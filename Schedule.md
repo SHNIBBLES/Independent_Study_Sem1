@@ -12,6 +12,10 @@
 
 * Week 3: 
 
+  Due for week 3: Use turtle to draw basic shapes (with 5 pointed stars)
+  Bonus: Figure out how to take user input, take a number from the user, and draw something based on that number.
+
+  Make emacs do tab ind. in python
   Basic graphics programming.
   Using the basic Python 'turtle' graphics - navigating the Python online documentation.
 
