@@ -2,7 +2,7 @@
 
 import turtle
 
-x = int(input("Enter #:"))
+x = int(input("Enter the number of sides: "))
 i = 0
 turtle.color("green", "purple")
 turtle.begin_fill()
