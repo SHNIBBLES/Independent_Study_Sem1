@@ -21,6 +21,7 @@
 
 * Week 4:
 
+  Homework for next time: Include how the program should behave, Finish Word Checker Program, and make it work for multiple files at the same time.
   Showing Data, Debugging.
 
 ## November 12th - December 21th - Programming
