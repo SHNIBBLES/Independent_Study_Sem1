@@ -13,7 +13,7 @@ def fix(user_input):
     user_input.lower()
     #print("stating char position = " + str(user_input.find("like")))
     count = 0
-    for rounds in range(3): # Counts how many bad words there are
+    for rounds in range(len(bad_words)): # Counts how many bad words there are
         #print("Round: " + str(rounds))
         start_char = 0
         while True:
@@ -38,7 +38,7 @@ def fix(user_input):
     
 def ask():
     val = False
-    for x in range(3):
+    for x in range(len(bad_words)):
         if bad_words[x] in raw_input:
             val = True
     if val == True:
