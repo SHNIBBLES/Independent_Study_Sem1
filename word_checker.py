@@ -5,7 +5,11 @@ import sys
 bad_words = ["like", "very", "really"]
 
 print("Welcome to Word Checker 1.0!")
-pre_raw_input = str(input("Enter Words Here: "))
+#pre_raw_input = str(input("Enter Words Here: "))
+file_input = open("test_text.rtf","r")
+pre_raw_input = file_input.read().replace('\n', '')
+file_input.close()
+print("pre raw input = " + pre_raw_input)
 raw_input = pre_raw_input.lower().strip()
 def fix(user_input):
     for word in bad_words:
@@ -14,8 +18,8 @@ def fix(user_input):
             if start_point == -1: # (if there no more)
                 break
             delta_char = start_point
-            print("delta_char = " + str(delta_char))
-            print("len(user_input) = " + str(len(user_input)))            
+            #print("delta_char = " + str(delta_char))
+            #print("len(user_input) = " + str(len(user_input)))            
             while user_input[delta_char].isspace() != True:
                 delta_char += 1
                 if delta_char >= len(user_input):
