@@ -66,7 +66,7 @@ def location_direct():
 
 def look():
     if current_array == main_array:
-        if (p.y == 0) and (p.x == 0): print("")
+        if (p.y == 0) and (p.x == 0): print("You inspect the room further- ")
         if (p.y == 1) and (p.x == 0): print("You found a pencil!")
         if (p.y == 2) and (p.x == 0): print("")
         if (p.y == 3) and (p.x == 0): print("")
@@ -84,22 +84,6 @@ def look():
         if (p.y == 3) and (p.x == 3): print("")
     if current_array == pit_array:
         pass
-
-    
-def input_read(input):
-    input = input.strip().lower()
-    if input[0] == "n":
-        return "north"
-    if input[0] == "e":
-        return "east"
-    if input[0] == "s":
-        return "south"
-    if input[0] == "w":
-        return "west"
-    if input[0] == "l":
-        return "look"
-    if input[0] == "i":
-        return "inventory"
        
 class Player:
     y = 0
@@ -107,50 +91,65 @@ class Player:
     inventory = []
     def move(self, direction):
         global current_array
-        if(direction == "north") and (current_array[self.y-1][self.x] != 0) and (self.y-1 >= 0):
+        y_limit = len(current_array) - 1
+        x_limit = len(current_array[0]) - 1
+        if(direction == "n") and (current_array[self.y-1][self.x] == 1) and (self.y-1 >= 0):
             self.y -= 1
-            var = location_direct()
-            #print(var)
-            var(self.y+1, self.x)
-        elif(direction == "east") and (current_array[self.y][self.x+1] != 0):
+            location_direct()(self.y+1, self.x)
+        elif(direction == "e") and (self.x+1 <= x_limit) and (current_array[self.y][self.x+1] == 1):
             self.x += 1
             location_direct()(self.y, self.x-1)
-        elif(direction == "south") and (current_array[self.y+1][self.x] != 0):
+        elif(direction == "s") and (self.y+1 <= y_limit) and (current_array[self.y+1][self.x] == 1):
             self.y += 1
             location_direct()(self.y-1, self.x)
-        elif(direction == "west") and (current_array[self.y][self.x-1] != 0):
+        elif(direction == "w") and (current_array[self.y][self.x-1] == 1) and (self.x-1 >= 0):
             self.x -= 1
             location_direct()(self.y, self.x+1)
         else:
             print("You can't go there!")
         
-            
 class Location:
-    l000_visit_count = 0
-    l010_visit_count = 0
-    l020_visit_count = 0
-    l030_visit_count = 0
-    l001_visit_count = 0
-    l011_visit_count = 0
-    l021_visit_count = 0
-    l031_visit_count = 0
-    l002_visit_count = 0
-    l012_visit_count = 0
-    l022_visit_count = 0
-    l032_visit_count = 0
-    l003_visit_count = 0
-    l013_visit_count = 0
-    l023_visit_count = 0
-    l033_visit_count = 0
+    main_array_visit = [[0, 0, 0, 0],
+                        [0, 0, 0, 0],
+                        [0, 0, 0, 0],
+                        [0, 0, 0, 0]]
     def l000(self, lasty, lastx): #direction is where entering the square from
-        if self.l000_visit_count == 0:
+        if self.main_array_visit[0][0] == 0:
             print("You slowly open your eyes, you're in the corner of a dimly lit room.")
-        if self.l000_visit_count >=1:
+        if self.main_array_visit[0][0] >= 1:
             print("You're back to where you woke up")
-        self.l000_visit_count += 1
+        self.main_array_visit[0][0] += 1
     def l010(self, lasty, lastx):
-        print("A nobble says to you: Hello There!!")
-
+        print("Next Space")
+        self.main_array_visit[1][0] += 1
+    def l020(self, lasty, lastx):
+        self.main_array_visit[2][0] += 1
+    def l030(self, lasty, lastx):
+        self.main_array_visit[3][0] += 1
+    def l001(self, lasty, lastx):
+        self.main_array_visit[0][1] += 1
+    def l011(self, lasty, lastx):
+        self.main_array_visit[1][1] += 1
+    def l021(self, lasty, lastx):
+        self.main_array_visit[2][1] += 1
+    def l031(self, lasty, lastx):
+        self.main_array_visit[3][1] += 1
+    def l002(self, lasty, lastx):
+        self.main_array_visit[0][2] += 1
+    def l012(self, lasty, lastx):
+        self.main_array_visit[1][2] += 1
+    def l022(self, lasty, lastx):
+        self.main_array_visit[2][2] += 1
+    def l032(self, lasty, lastx):
+        self.main_array_visit[3][2] += 1
+    def l003(self, lasty, lastx):
+        self.main_array_visit[0][3] += 1
+    def l013(self, lasty, lastx):
+        self.main_array_visit[1][3] += 1
+    def l023(self, lasty, lastx):
+        self.main_array_visit[2][3] += 1
+    def l033(self, lasty, lastx):
+        self.main_array_visit[3][3] += 1
             
 box_gen("Welcome to The Test Array Game!\n Alpha V1.0 \n    By Elijah Underhill-Miller")
 box_gen("Instructions:\nFind your way out.")
@@ -160,8 +159,14 @@ main_array = [[1, 0, 1, 0],
               [1, 1, 1, 1],
               [0, 1, 1, 0],
               [1, 1, 0, 0]]
+main_item_array = [[["pencil"], [], [], []],
+                   [[], [], [], []],
+                   [[], ["map"], [], []],
+                   [["key"], [], [], []]]
 pit_array = [[1, 0],
              [1, 1]]
+pit_item_array = [[[], []],
+                  [[], []]]
 current_array = main_array
 p = Player()
 l = Location()
@@ -169,19 +174,20 @@ location_direct()(0, 0)
 while True:
     #print("Postition: " 
     raw_input = str(input("--> "))
-    user_input = input_read(raw_input)
-    if (raw_input.strip().lower() == "exit game"):
+    #user_input = input_read(raw_input)
+    raw_input = raw_input.strip().lower()
+    if raw_input == "exit game":
         break
-    elif (raw_input.strip().lower() == "location"):
+    elif raw_input == "location":
         print("Location: " + "[" + str(p.y) + "][" + str(p.x) + "]")
-    elif user_input == "look":
+    elif (raw_input == "l") or (raw_input == "look"):
         look()
-    elif user_input == "north" or "east" or "south" or "west":
-       p.move(user_input)
-    elif user_input == "inventory":
-       print("| Inventory: ")
-       for x in range(inventory):
-           print("| " + inventory[x])
+    elif raw_input == "i":
+        print("| Inventory: ")
+        for x in range(inventory):
+            print("| " + inventory[x])
+    elif (raw_input == "n" or "north") or (raw_input == "e" or "east")  or (raw_input == "s" or "south") or (raw_input == "w" or "west"):
+        p.move(raw_input)
     else:
         print("Command not recognized")
     
