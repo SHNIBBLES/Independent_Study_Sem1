@@ -64,34 +64,48 @@ import math
 #    if user_input == ("count"):
 #        print(str(l.pos))
 #####
-class Player:
-    inventory = []
-    y = 0
-    def __init__(self):
-        self.inventory.append("pencil")
-        ##self.y = 0
-    def move(self, direction):
-        global thing
-        if(direction == "north") and (thing == 0):
-            self.y += 1
-    def lol(self):
-        class lol2:
-            print("we made it!")
-        
-
-p = Player()
-while True:
-    user_input = str(input("--> "))
-    if user_input == "north" or "east" or "south" or "west":
-        p.move(user_input)
-    if user_input == "test":
-        p.lol.lol2()
-    if user_input == ("position"):
-        print(str(p.y))
-    if user_input == ("inventory"):
-        print("Inventory: " + str(p.inventory))
-    if user_input == ("exit"):
-        break
+#####CLASS STUFF:::
+#class Player:
+#    inventory = []
+#    y = 0
+#    def __init__(self):
+#        self.inventory.append("pencil")
+#        ##self.y = 0
+#    def move(self, direction):
+#        global thing
+#        if(direction == "north") and (thing == 0):
+#            self.y += 1
+#    def lol(self):
+#        class lol2:
+#            print("we made it!")
+#        
+#
+#p = Player()
+#while True:
+#    user_input = str(input("--> "))
+#    if user_input == "north" or "east" or "south" or "west":
+#        p.move(user_input)
+#    if user_input == "test":
+#        p.lol.lol2()
+#    if user_input == ("position"):
+#        print(str(p.y))
+#    if user_input == ("inventory"):
+#        print("Inventory: " + str(p.inventory))
+#    if user_input == ("exit"):
+#        break
 #r1.name = "Jeff"
 #r1.color = "BLUWEE DA BO DIII DA BO DAIE"
 #r1.introduce_self()
+array = [[["pencil", "eraser", "books"], ["drink", "la croix"]],
+         [["car", "truck", "van"], []]]
+word_sum = []
+for y in range(len(array)):
+    for x in range(len(array[0])):
+        for z in range(len(array[y][x])):
+            if len(array[y][x]) >= 1:
+                word_sum.append(array[y][x][z])
+        x += 1
+    y += 1
+print(word_sum)
+#result = isinstance(array[1][1][0], str)
+#print(str(result))

@@ -44,6 +44,9 @@ def map_gen(array):
 #
 ###
 def location_direct():
+    global current_array
+    global main_array
+    global pit_array
     if current_array == main_array:
         if (p.y == 0) and (p.x == 0): return l.l000
         if (p.y == 1) and (p.x == 0): return l.l010
@@ -65,6 +68,9 @@ def location_direct():
         pass
 
 def look():
+    global current_array
+    global main_array
+    global pit_array
     if current_array == main_array:
         if (p.y == 0) and (p.x == 0): print("You inspect the room further- ")
         if (p.y == 1) and (p.x == 0): print("You found a pencil!")
@@ -84,7 +90,33 @@ def look():
         if (p.y == 3) and (p.x == 3): print("")
     if current_array == pit_array:
         pass
-       
+
+def use(input):
+    global current_array
+    global main_array
+    global pit_array
+    if current_array == main_array:
+        pass
+    if current_array == pit_array:
+        pass
+
+def get(input):
+    global item_list
+    global main_item_array
+    global pit_item_array
+    words = input.split()
+    if current_array == main_array:
+        pass
+
+        if (words[1] == "pencil") and (words[1] in main_item_array[p.y][p.x]):
+            main_item_array[p.y][p.x].remove(words[1])
+            p.inventory.append(words[1])
+            
+                
+
+def drop(input):
+    pass
+    
 class Player:
     y = 0
     x = 0
@@ -151,22 +183,27 @@ class Location:
     def l033(self, lasty, lastx):
         self.main_array_visit[3][3] += 1
             
-box_gen("Welcome to The Test Array Game!\n Alpha V1.0 \n    By Elijah Underhill-Miller")
+box_gen("Welcome to The Array Game!\n Alpha V1.4 \n  By Elijah Underhill-Miller")
 box_gen("Instructions:\nFind your way out.")
-box_gen("Commands: \n n, e, s, w, = Movement \n l = Look, i = Inventory\n  If you wish to interact with an object,\ntype its name.") 
+box_gen("Commands: \n n, e, s, w, = Movement \n l = Look, i = Inventory\n  If you wish to interact with an object,\ntype its name.\n If you wish to pick up or drop an item, \n  type \"pick up\" or \"drop\" proceeding the item.") 
 #Starting Position: 0, 0
 main_array = [[1, 0, 1, 0],
               [1, 1, 1, 1],
               [0, 1, 1, 0],
               [1, 1, 0, 0]]
-main_item_array = [[["pencil"], [], [], []],
+main_item_array = [[["pencil"], [], ["yarn", "electric wire"], []],
                    [[], [], [], []],
-                   [[], ["map"], [], []],
-                   [["key"], [], [], []]]
+                   [[], ["sketched map", "screwdriver"], ["electric wire"], []],
+                   [["black key"], [], [], []]]
 pit_array = [[1, 0],
              [1, 1]]
 pit_item_array = [[[], []],
-                  [[], []]]
+                  [["rusty key"], ["ladder rung"]]]
+item_list = []
+#for x in range(len(main_item_array)*len(main_item_array[0])+(len(pit_item_array)*len(pit_item_array[0]))):
+print(main_item_array[0][0][0])
+for x in range(len(main_item_array)*len(main_item_array[0])):
+    pass
 current_array = main_array
 p = Player()
 l = Location()
@@ -184,11 +221,17 @@ while True:
         look()
     elif raw_input == "i":
         print("| Inventory: ")
-        for x in range(inventory):
-            print("| " + inventory[x])
+        for x in range(len(p.inventory)):
+            print("| 1 " + p.inventory[x])
     elif (raw_input == "n" or "north") or (raw_input == "e" or "east")  or (raw_input == "s" or "south") or (raw_input == "w" or "west"):
         p.move(raw_input)
-    else:
+    elif ("get" in raw_input) or ("take" in raw_input) or ("pick up" in raw_input):
+        get(raw_input)
+    elif "drop" in raw_input:
+        drop(raw_input)
+    elif (raw_input == "pencil") or (raw_input == "yarn") or (raw_input == "sketched map") or (raw_input == "screwdriver") or (raw_input == "electric wire") or (raw_input == "black key") or (raw_input == "rusty key") or (raw_input == "ladder rung"):
+        use(raw_input)
+    else: 
         print("Command not recognized")
     
               
