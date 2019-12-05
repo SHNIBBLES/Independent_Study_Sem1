@@ -33,6 +33,9 @@
 
 * Week 6:
 
+  Due this week:
+  Do word_checker but with files from computer
+
   Accessing the operating system.
   Reading/writing files and folders.
   Exercise: write a basic duplicates finder.

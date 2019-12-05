@@ -52,85 +52,159 @@ def location_direct():
     # matters whether you use 'is' instead of '==' :-).
     if current_array == main_array:
         if (p.y == 0) and (p.x == 0): return l.l000
-        if (p.y == 1) and (p.x == 0): return l.l010
-        if (p.y == 2) and (p.x == 0): return l.l020
-        if (p.y == 3) and (p.x == 0): return l.l030
-        if (p.y == 0) and (p.x == 1): return l.l001
-        if (p.y == 1) and (p.x == 1): return l.l011
-        if (p.y == 2) and (p.x == 1): return l.l021
-        if (p.y == 3) and (p.x == 1): return l.l031
-        if (p.y == 0) and (p.x == 2): return l.l002
-        if (p.y == 1) and (p.x == 2): return l.l012
-        if (p.y == 2) and (p.x == 2): return l.l022
-        if (p.y == 3) and (p.x == 2): return l.l032
-        if (p.y == 0) and (p.x == 3): return l.l003
-        if (p.y == 1) and (p.x == 3): return l.l013
-        if (p.y == 2) and (p.x == 3): return l.l023
-        if (p.y == 3) and (p.x == 3): return l.l033
-    # KFF: Should this be 'elif'?
-    # KFF: Same thing: use 'is' to test this equality, not '=='.
+        elif (p.y == 1) and (p.x == 0): return l.l010
+        elif (p.y == 2) and (p.x == 0): return l.l020
+        elif (p.y == 3) and (p.x == 0): return l.l030
+        elif (p.y == 0) and (p.x == 1): return l.l001
+        elif (p.y == 1) and (p.x == 1): return l.l011
+        elif (p.y == 2) and (p.x == 1): return l.l021
+        elif (p.y == 3) and (p.x == 1): return l.l031
+        elif (p.y == 0) and (p.x == 2): return l.l002
+        elif (p.y == 1) and (p.x == 2): return l.l012
+        elif (p.y == 2) and (p.x == 2): return l.l022
+        elif (p.y == 3) and (p.x == 2): return l.l032
+        elif (p.y == 0) and (p.x == 3): return l.l003
+        elif (p.y == 1) and (p.x == 3): return l.l013
+        elif (p.y == 2) and (p.x == 3): return l.l023
+        elif (p.y == 3) and (p.x == 3): return l.l033
     if current_array == pit_array:
-        pass
+        if (p.y == 0) and (p.x == 0): return l.l100
+        elif (p.y == 1) and (p.x == 0): return l.l110
+        elif (p.y == 1) and (p.x == 1): return l.l111
 
 def look():
+    ###############################
+    #[0,0] |#######| [0,2] |#######
+    #-----------------------------#
+    #[1,0] | [1,1] | [1,2] | [1,3]#
+    #-----------------------------#
+    #######| [2,1] | [2,2] |#######
+    #-----------------------------#
+    #[3,0] | [3,1] |###############
+    ###############################    
     global current_array
     global main_array
     global pit_array
-    # KFF: Same thing: use 'is' to test this equality, not '=='.
+    global main_item_array
+    global pit_item_array
     if current_array == main_array:
-        if (p.y == 0) and (p.x == 0): print("You inspect the room further- ")
-        if (p.y == 1) and (p.x == 0): print("You found a pencil!")
-        if (p.y == 2) and (p.x == 0): print("")
-        if (p.y == 3) and (p.x == 0): print("")
-        if (p.y == 0) and (p.x == 1): print("")
-        if (p.y == 1) and (p.x == 1): print("")
-        if (p.y == 2) and (p.x == 1): print("")
-        if (p.y == 3) and (p.x == 1): print("")
-        if (p.y == 0) and (p.x == 2): print("")
-        if (p.y == 1) and (p.x == 2): print("")
-        if (p.y == 2) and (p.x == 2): print("")
-        if (p.y == 3) and (p.x == 2): print("")
-        if (p.y == 0) and (p.x == 3): print("")
-        if (p.y == 1) and (p.x == 3): print("")
-        if (p.y == 2) and (p.x == 3): print("")
-        if (p.y == 3) and (p.x == 3): print("")
-    # KFF: Should this be 'elif'?
-    # KFF: Same thing: use 'is' to test this equality, not '=='.
+        items_here = []
+        item_str = " You see here"
+        if len(main_item_array[p.y][p.x]) >= 1:
+            for item in main_item_array[p.y][p.x]:
+                item_str = item_str + " a/an " + item + ","
+        else:
+            item_str = ""    
+        if (p.y == 0) and (p.x == 0): print("You inspect the room further- you find that you eyes have adjusted and it's quite easy to see in the room. There's lots of dust around the edge of the floor." + item_str)
+        elif (p.y == 1) and (p.x == 0): print("" + item_str)        
+        elif (p.y == 3) and (p.x == 0): print("" + item_str)
+        elif (p.y == 0) and (p.x == 1): print("" + item_str)
+        elif (p.y == 1) and (p.x == 1): print("" + item_str)
+        elif (p.y == 2) and (p.x == 1): print("" + item_str)
+        elif (p.y == 3) and (p.x == 1): print("" + item_str)
+        elif (p.y == 0) and (p.x == 2): print("" + item_str)
+        elif (p.y == 1) and (p.x == 2): print("" + item_str)
+        elif (p.y == 2) and (p.x == 2): print("" + item_str)
+        elif (p.y == 1) and (p.x == 3): print("" + item_str)
     if current_array == pit_array:
-        pass
+        if (p.y == 0) and (p.x == 0): print("" + item_str)
+        elif (p.y == 1) and (p.x == 0): print("" + item_str)
+        elif (p.y == 1) and (p.x == 1): print("" + item_str)
 
 def use(input):
+    ###############################
+    #[0,0] |#######| [0,2] |#######
+    #-----------------------------#
+    #[1,0] | [1,1] | [1,2] | [1,3]#
+    #-----------------------------#
+    #######| [2,1] | [2,2] |#######
+    #-----------------------------#
+    #[3,0] | [3,1] |###############
+    ###############################
     global current_array
     global main_array
     global pit_array
-    # KFF: Same thing: use 'is' to test this equality, not '=='.
-    if current_array == main_array:
-        pass
-    # KFF: Should this be 'elif'?
-    # KFF: Same thing: use 'is' to test this equality, not '=='.
-    if current_array == pit_array:
-        pass
-
+    global main_item_array
+    global pit_item_array
+    ##ITEMS: pencil, yarn, electric_wire, sketched_map, screwdriver, black_key, rusty_key, ladder_rung 
+    if input in p.inventory:
+        if current_array == main_array:
+            box_open = False
+            if input == "pencil":
+                if "sketched_map" in p.inventory:
+                    print("You draw a picture of a robo turk on the map. Frankly it looks quite creepy. The mustly atmosphere of this place combined with occasional glimpes of the robo turk is not a good combination.")
+                else:
+                    print("You can't use that here!")
+            elif input == "yarn":
+                if (p.y == 1) and (p.x == 1):
+                    print("Holding the loose end, you throw the ball of yarn up toward the light hanging from the celing. It winds around the wire and then you pull down. The lamp comes crashing down, and now it's much darker.")
+                    main_item_array[p.y][p.x].append(broken_light_bulb)
+                else: print("You can't use that here!")
+            elif input == "electric_wire":
+                if (p.y == 0) and (p.x == 2):
+                    if box_open == True:
+                        print("You see that there's a wire that's torn in two, you take the wire you picked up and attach the two loose ends, and see a spark. After a few moments, you hear a motor turn on and suddunly the floor below you opens up! You start falling...")
+                        current_array = pit_array
+                    else: print("You can't use that here!")
+                else: print("You can't use that here!")
+            elif input == "sketched_map":
+                man_gen(main_array)
+            elif input == "screwdriver":
+                if (p.y == 0) and (p.x == 2):
+                    if box_open == False:
+                        print("You look at the box on the corner of the wall, and look at the screwdriver in your hand. You get an idea. Why not? You proceed to wedge the end of the screwdriver in the space between the front panel of the box and itself. After some fiddling, the panel pops open and falls to the ground. The box appears to be some sort of electronic control system.")
+                        box_open = True
+                    else: print("You can't use that here!")
+                else: print("You can't use that here!")
+            elif input == "black_key": pass
+            elif input == "rusty_key": pass
+            elif input == "ladder_rung": pass
+        if current_array == pit_array:
+            if input == "pencil":
+                if "sketched_map" in p.inventory:
+                    print("You draw a picture of a robo turk on the map. Frankly it looks quite creepy. The mustly atmosphere of this place combined with occasional glimpes of the robo turk is not a good combination.")
+                else:
+                    print("You can't use that here!")
+            elif input == "yarn": pass
+            elif input == "electric_wire": pass
+            elif input == "sketched_map":
+                man_gen(main_array)
+            elif input == "screwdriver": pass
+            elif input == "black_key": pass
+            elif input == "rusty_key": pass
+            elif input == "ladder_rung": pass
+    else:
+        print("You don't have that item!")
+        
 def get(input):
-    global item_list
+    global static_item_list
     global main_item_array
     global pit_item_array
     words = input.split()
-    # KFF: Same thing: use 'is' to test this equality, not '=='.
+    check_len = len(p.inventory) #used to see if it has changed
     if current_array == main_array:
-        # KFF: What's this 'pass' for?
-        pass
-
-        if (words[1] == "pencil") and (words[1] in main_item_array[p.y][p.x]):
-            main_item_array[p.y][p.x].remove(words[1])
-            p.inventory.append(words[1])
-            
-                
+        for item in static_item_list:
+            if (words[-1] == item) and (item in main_item_array[p.y][p.x]):
+                main_item_array[p.y][p.x].remove(item)
+                p.inventory.append(item)
+                print("You picked up a/an " + item)
+                break
+        if len(p.inventory) == check_len:
+            print("That item isn't here!")
 
 def drop(input):
-    # KFF: What's 'drop' supposed to do?
-    pass
-    
+    global static_item_list
+    global main_item_array
+    global pit_item_array
+    words = input.split()
+    if current_array == main_array:
+        if words[-1] in p.inventory:
+            p.inventory.remove(words[-1])
+            main_item_array[p.y][p.x].append(words[-1])
+            print("You dropped a/an" + words[-1])
+        else:
+            print("You don't have that item!")
+
 # KFF: Generally it's good to put the classes first in the file, not
 # last.  People want to read them first, because from the classes one
 # gets a sense of how the program will work.
@@ -177,24 +251,39 @@ class Location:
                         [0, 0, 0, 0],
                         [0, 0, 0, 0],
                         [0, 0, 0, 0]]
+    pit_array_visit = [[0, 0],
+                       [0, 0]]
     def l000(self, lasty, lastx): #direction is where entering the square from
         if self.main_array_visit[0][0] == 0:
-            print("You slowly open your eyes, you're in the corner of a dimly lit room.")
+            print("\"What happened?\" you think in your head before you can speak. You fell very tired. You open your eyes, you're in the corner of a dimly lit room. Across from you you can see there's sort of a hallway leading to the left")
         if self.main_array_visit[0][0] >= 1:
             print("You're back to where you woke up")
         self.main_array_visit[0][0] += 1
     def l010(self, lasty, lastx):
-        print("Next Space")
+        if self.main_array_visit[1][0] == 0:
+            print("The walls are smooth dark grey concrete, like the inside of that bunker in the sci-fi movie you watched. Wait, when did you watch that movie?? It seems like it has been an eternity, yet you also remember just watching it.")
+        else:
+            print("There's not much here, the ground seems kind of moist. You don't like it.")
         self.main_array_visit[1][0] += 1
-    def l020(self, lasty, lastx):
-        self.main_array_visit[2][0] += 1
+                  ###############################
+                  #[0,0] |#######| [0,2] |#######
+                  #-----------------------------#
+                  #[1,0] | [1,1] | [1,2] | [1,3]#
+                  #-----------------------------#
+                  #######| [2,1] | [2,2] |#######
+                  #-----------------------------#
+                  #[3,0] | [3,1] |###############
+                  ###############################
     def l030(self, lasty, lastx):
+        print("There's a big scary door here. You wonder where it goes. Should you try to open it? You try the handle, but it won't budge.")
         self.main_array_visit[3][0] += 1
-    def l001(self, lasty, lastx):
-        self.main_array_visit[0][1] += 1
     def l011(self, lasty, lastx):
         self.main_array_visit[1][1] += 1
     def l021(self, lasty, lastx):
+        if (lasty == 3) and (lastx == 1):
+            print("From this direction, you see that theres a slice of paper wedged in between the wall and the pipe")
+        else:
+            print("There's a large pipe on one side of the room, it looks like it carries fluids.")
         self.main_array_visit[2][1] += 1
     def l031(self, lasty, lastx):
         self.main_array_visit[3][1] += 1
@@ -204,51 +293,61 @@ class Location:
         self.main_array_visit[1][2] += 1
     def l022(self, lasty, lastx):
         self.main_array_visit[2][2] += 1
-    def l032(self, lasty, lastx):
-        self.main_array_visit[3][2] += 1
-    def l003(self, lasty, lastx):
-        self.main_array_visit[0][3] += 1
     def l013(self, lasty, lastx):
         self.main_array_visit[1][3] += 1
-    def l023(self, lasty, lastx):
-        self.main_array_visit[2][3] += 1
-    def l033(self, lasty, lastx):
-        self.main_array_visit[3][3] += 1
+################################################################
+    def l100(self, lasty, lastx):
+        self.pit_array_visit[0][0] += 1
             
 box_gen("Welcome to The Array Game!\n Alpha V1.4 \n  By Elijah Underhill-Miller")
 box_gen("Instructions:\nFind your way out.")
-# KFF: For the word "proceeding" below I think you mean "preceding".
-box_gen("Commands: \n n, e, s, w, = Movement \n l = Look, i = Inventory\n  If you wish to interact with an object,\ntype its name.\n If you wish to pick up or drop an item, \n  type \"pick up\" or \"drop\" proceeding the item.") 
+box_gen("Commands: \n n, e, s, w, = Movement \n l = Look, i = Inventory\n  If you wish to use an object,\ntype its name.\n If you wish to pick up or drop an item, \n  type \"pick up\" or \"get\" or \"get\" preceding the item.") 
 #Starting Position: 0, 0
 main_array = [[1, 0, 1, 0],
               [1, 1, 1, 1],
               [0, 1, 1, 0],
               [1, 1, 0, 0]]
-main_item_array = [[["pencil"], [], ["yarn", "electric wire"], []],
+main_item_array = [[["pencil"], [], ["yarn", "electric_wire"], []],
                    [[], [], [], []],
-                   [[], ["sketched map", "screwdriver"], ["electric wire"], []],
-                   [["black key"], [], [], []]]
+                   [[], ["sketched_map", "screwdriver"], ["electric_wire"], []],
+                   [["black_key"], [], [], []]]
 pit_array = [[1, 0],
              [1, 1]]
 pit_item_array = [[[], []],
-                  [["rusty key"], ["ladder rung"]]]
-item_list = []
-#for x in range(len(main_item_array)*len(main_item_array[0])+(len(pit_item_array)*len(pit_item_array[0]))):
-print(main_item_array[0][0][0])
-# KFF: What's this for-loop for?  All it seems to do is 'pass'.
-for x in range(len(main_item_array)*len(main_item_array[0])):
-    pass
+                  [["rusty_key"], ["ladder_rung"]]]
+
+##ITEMS: pencil, yarn, electric_wire, sketched_map, screwdriver, black_key, rusty_key, ladder_rung \
+
+static_interactibles_list = []
+static_item_list = []
+
+for rows in range(len(main_item_array)):
+    for cols in range(len(main_item_array[0])):
+        for items in range(len(main_item_array[rows][cols])):
+            if len(main_item_array[rows][cols]) >= 1:
+                static_item_list.append(main_item_array[rows][cols][items])
+        cols  += 1
+    rows += 1
+for rows in range(len(pit_item_array)):
+    for cols in range(len(pit_item_array[0])):
+        for items in range(len(pit_item_array[rows][cols])):
+            if len(pit_item_array[rows][cols]) >= 1:
+                static_item_list.append(pit_item_array[rows][cols][items])
+        cols  += 1
+    rows += 1
+
 current_array = main_array
 p = Player()
 l = Location()
 location_direct()(0, 0)
 while True:
-    #print("Postition: " 
     raw_input = str(input("--> "))
-    #user_input = input_read(raw_input)
     raw_input = raw_input.strip().lower()
     if raw_input == "exit game":
+        print("Goodbye!!")
         break
+    elif ("get" in raw_input) or ("take" in raw_input) or ("pick up" in raw_input):
+        get(raw_input)
     elif raw_input == "location":
         print("Location: " + "[" + str(p.y) + "][" + str(p.x) + "]")
     elif (raw_input == "l") or (raw_input == "look"):
@@ -257,13 +356,11 @@ while True:
         print("| Inventory: ")
         for x in range(len(p.inventory)):
             print("| 1 " + p.inventory[x])
-    elif (raw_input == "n" or "north") or (raw_input == "e" or "east")  or (raw_input == "s" or "south") or (raw_input == "w" or "west"):
+    elif (raw_input == "n") or (raw_input == "e")  or (raw_input == "s") or (raw_input == "w"):
         p.move(raw_input)
-    elif ("get" in raw_input) or ("take" in raw_input) or ("pick up" in raw_input):
-        get(raw_input)
     elif "drop" in raw_input:
         drop(raw_input)
-    elif (raw_input == "pencil") or (raw_input == "yarn") or (raw_input == "sketched map") or (raw_input == "screwdriver") or (raw_input == "electric wire") or (raw_input == "black key") or (raw_input == "rusty key") or (raw_input == "ladder rung"):
+    elif raw_input in static_item_list:
         use(raw_input)
     else: 
         print("Command not recognized")
