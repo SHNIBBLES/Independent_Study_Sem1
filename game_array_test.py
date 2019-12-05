@@ -47,6 +47,9 @@ def location_direct():
     global current_array
     global main_array
     global pit_array
+    # KFF: Use 'is' to test this equality, not '=='.
+    # On Saturday, I'll show you a mind-blowing example of why it
+    # matters whether you use 'is' instead of '==' :-).
     if current_array == main_array:
         if (p.y == 0) and (p.x == 0): return l.l000
         if (p.y == 1) and (p.x == 0): return l.l010
@@ -64,6 +67,8 @@ def location_direct():
         if (p.y == 1) and (p.x == 3): return l.l013
         if (p.y == 2) and (p.x == 3): return l.l023
         if (p.y == 3) and (p.x == 3): return l.l033
+    # KFF: Should this be 'elif'?
+    # KFF: Same thing: use 'is' to test this equality, not '=='.
     if current_array == pit_array:
         pass
 
@@ -71,6 +76,7 @@ def look():
     global current_array
     global main_array
     global pit_array
+    # KFF: Same thing: use 'is' to test this equality, not '=='.
     if current_array == main_array:
         if (p.y == 0) and (p.x == 0): print("You inspect the room further- ")
         if (p.y == 1) and (p.x == 0): print("You found a pencil!")
@@ -88,6 +94,8 @@ def look():
         if (p.y == 1) and (p.x == 3): print("")
         if (p.y == 2) and (p.x == 3): print("")
         if (p.y == 3) and (p.x == 3): print("")
+    # KFF: Should this be 'elif'?
+    # KFF: Same thing: use 'is' to test this equality, not '=='.
     if current_array == pit_array:
         pass
 
@@ -95,8 +103,11 @@ def use(input):
     global current_array
     global main_array
     global pit_array
+    # KFF: Same thing: use 'is' to test this equality, not '=='.
     if current_array == main_array:
         pass
+    # KFF: Should this be 'elif'?
+    # KFF: Same thing: use 'is' to test this equality, not '=='.
     if current_array == pit_array:
         pass
 
@@ -105,7 +116,9 @@ def get(input):
     global main_item_array
     global pit_item_array
     words = input.split()
+    # KFF: Same thing: use 'is' to test this equality, not '=='.
     if current_array == main_array:
+        # KFF: What's this 'pass' for?
         pass
 
         if (words[1] == "pencil") and (words[1] in main_item_array[p.y][p.x]):
@@ -115,9 +128,26 @@ def get(input):
                 
 
 def drop(input):
+    # KFF: What's 'drop' supposed to do?
     pass
     
+# KFF: Generally it's good to put the classes first in the file, not
+# last.  People want to read them first, because from the classes one
+# gets a sense of how the program will work.
+
 class Player:
+    # KFF: You're using class-static variables here, instead of
+    # instance variables.  The way to use instance variables is to
+    # have an __init__() method in the class, and initialize these
+    # variables as "self.y = 0", "self.x = 0", "self.inventory = []"
+    # etc.  The distinction is a bit subtle; we can talk about it more
+    # on Saturday.  
+    # 
+    # For now, I'd just say don't declare variables in a class outside
+    # a method.  Basically, in normal class usage, all variable
+    # setting happens inside methods, and the way you share a variable
+    # *between* methods is by keeping the variable in the object with
+    # "self.foo" -- then "foo" is a property of the current object.
     y = 0
     x = 0
     inventory = []
@@ -141,6 +171,8 @@ class Player:
             print("You can't go there!")
         
 class Location:
+    # KFF: Same thing here about using an __init__() method and making
+    # this be "self.main_array_visit" in that method.
     main_array_visit = [[0, 0, 0, 0],
                         [0, 0, 0, 0],
                         [0, 0, 0, 0],
@@ -185,6 +217,7 @@ class Location:
             
 box_gen("Welcome to The Array Game!\n Alpha V1.4 \n  By Elijah Underhill-Miller")
 box_gen("Instructions:\nFind your way out.")
+# KFF: For the word "proceeding" below I think you mean "preceding".
 box_gen("Commands: \n n, e, s, w, = Movement \n l = Look, i = Inventory\n  If you wish to interact with an object,\ntype its name.\n If you wish to pick up or drop an item, \n  type \"pick up\" or \"drop\" proceeding the item.") 
 #Starting Position: 0, 0
 main_array = [[1, 0, 1, 0],
@@ -202,6 +235,7 @@ pit_item_array = [[[], []],
 item_list = []
 #for x in range(len(main_item_array)*len(main_item_array[0])+(len(pit_item_array)*len(pit_item_array[0]))):
 print(main_item_array[0][0][0])
+# KFF: What's this for-loop for?  All it seems to do is 'pass'.
 for x in range(len(main_item_array)*len(main_item_array[0])):
     pass
 current_array = main_array
