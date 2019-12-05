@@ -321,20 +321,16 @@ pit_item_array = [[[], []],
 static_interactibles_list = []
 static_item_list = []
 
-for rows in range(len(main_item_array)):
-    for cols in range(len(main_item_array[0])):
-        for items in range(len(main_item_array[rows][cols])):
-            if len(main_item_array[rows][cols]) >= 1:
-                static_item_list.append(main_item_array[rows][cols][items])
-        cols  += 1
-    rows += 1
-for rows in range(len(pit_item_array)):
-    for cols in range(len(pit_item_array[0])):
-        for items in range(len(pit_item_array[rows][cols])):
-            if len(pit_item_array[rows][cols]) >= 1:
-                static_item_list.append(pit_item_array[rows][cols][items])
-        cols  += 1
-    rows += 1
+for row in range(len(main_item_array)):
+    for col in range(len(main_item_array[0])):
+        for item in range(len(main_item_array[row][col])):
+            if len(main_item_array[row][col]) >= 1:
+                static_item_list.append(main_item_array[row][col][item])
+for row in range(len(pit_item_array)):
+    for col in range(len(pit_item_array[0])):
+        for item in range(len(pit_item_array[row][col])):
+            if len(pit_item_array[row][col]) >= 1:
+                static_item_list.append(pit_item_array[row][col][item])
 
 current_array = main_array
 p = Player()
