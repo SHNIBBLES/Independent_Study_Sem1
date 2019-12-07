@@ -47,10 +47,13 @@
   Using Dictionaries (hash tables).
   Exercise: improve the duplicates finder.
 
-* Week 8:
+* Homework for Week 8 (Week of Decemner 9th):
 
-  Classes, objects and methods.
-  How to organize code for maintainability.
+  Document every function and method
+  Make location_direct() into array, turn into method of Location class
+  Create a game class to avoid globals
+
+  For Karl: Send Eli the Paul Graham essay on tests and hackability
 
 * Week 9:
 
