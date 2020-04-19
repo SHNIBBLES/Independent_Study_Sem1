@@ -1,3 +1,5 @@
+2020-04-19: Karl's homework: learn how to do programming lanugage autofill in Emacs for Python/Cocos.
+
 # Semester 1:
 
 ## September 6th - October 5th - Programming
