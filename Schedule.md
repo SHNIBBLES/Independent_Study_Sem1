@@ -1,4 +1,5 @@
 2020-04-19: Karl's homework: learn how to do programming lanugage autofill in Emacs for Python/Cocos.
+            Eli's homework: watch the videos; if possible, learn to draw a circle
 
 # Semester 1:
 
