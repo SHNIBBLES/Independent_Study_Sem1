@@ -1,5 +1,7 @@
-2020-04-19: Karl's homework: learn how to do programming lanugage autofill in Emacs for Python/Cocos.
-            Eli's homework: watch the videos; if possible, learn to draw a circle
+2020-04-22: Eli to learn the meaning of everything in the 1st example
+            on https://www.pygame.org/docs/tut/PygameIntro.html and be
+            able to explain it.  If have extra time, make eliGame.py
+            do more (like move the circle, or expand it, etc).
 
 # Semester 1:
 
