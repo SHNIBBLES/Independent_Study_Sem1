@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 
-# Reference: https://www.pygame.org/docs/genindex.html
+# References:
+#   - https://www.pygame.org/docs/
+#   - https://www.pygame.org/docs/tut/PygameIntro.html
+#   - https://www.pygame.org/docs/genindex.html
 
 import pygame
 import time
