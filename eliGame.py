@@ -18,19 +18,20 @@ orgigball.convert()
 ball = orgigball
 ballrect = ball.get_rect()
 ballrect.center = center
+hitDis = 55
 
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()
     rotation = (rotation + 15) % 360
     ball = pygame.transform.rotate(orgigball, rotation)
-    #ballrect = ball.get_rect()
+    ballrect = ball.get_rect()
     ballrect = ballrect.move(speed)
+    ballrect.center = center
     rectCenterX = ballrect.centerx
     rectCenterY = ballrect.centery
     #distanceX = width - rectCenterX
     #distanceY = height - rectCenterY
-    hitDis = 40
     if (rectCenterX <= 0 + hitDis) or (rectCenterX >= width - hitDis):
         speed[0] = -speed[0]
     if (rectCenterY <= 0 + hitDis) or (rectCenterY >= height - hitDis):
