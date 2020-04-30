@@ -35,7 +35,6 @@ while True:
         speed[0] = -speed[0]
     if (rectCenterY <= 0 + hitDis) or (rectCenterY >= height - hitDis):
         speed[1] = -speed[1]
-    ballrect.center = center
     screen.fill(black)
     pygame.draw.rect(screen, green, ballrect, 1)
     screen.blit(ball, ballrect)
