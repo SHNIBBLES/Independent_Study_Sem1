@@ -23,11 +23,10 @@ hitDis = 55
 while True:
     for event in pygame.event.get():
         if event.type == pygame.QUIT: sys.exit()
-    rotation = (rotation + 15) % 360
+    rotation = (rotation + 6) % 360
     ball = pygame.transform.rotate(orgigball, rotation)
-    ballrect = ball.get_rect()
+    
     ballrect = ballrect.move(speed)
-    ballrect.center = center
     rectCenterX = ballrect.centerx
     rectCenterY = ballrect.centery
     #distanceX = width - rectCenterX
@@ -38,7 +37,7 @@ while True:
         speed[1] = -speed[1]
     screen.fill(black)
     pygame.draw.rect(screen, green, ballrect, 1)
-    screen.blit(ball, ballrect)
+    screen.blit(ball, (ballrect.centerx - int(ball.get_width() / 2), ballrect.centery - int(ball.get_height() / 2)))
     time.sleep(.05)
     pygame.display.flip()
 
