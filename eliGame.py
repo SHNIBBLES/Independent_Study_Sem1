@@ -18,7 +18,7 @@ orgigball.convert()
 ball = orgigball
 ballrect = ball.get_rect()
 ballrect.center = center
-hitDis = 55
+hitDis = (ballrect.width / 2)
 
 while True:
     for event in pygame.event.get():
@@ -29,8 +29,6 @@ while True:
     ballrect = ballrect.move(speed)
     rectCenterX = ballrect.centerx
     rectCenterY = ballrect.centery
-    #distanceX = width - rectCenterX
-    #distanceY = height - rectCenterY
     if (rectCenterX <= 0 + hitDis) or (rectCenterX >= width - hitDis):
         speed[0] = -speed[0]
     if (rectCenterY <= 0 + hitDis) or (rectCenterY >= height - hitDis):
