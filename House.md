@@ -1,3 +1,13 @@
+* 2020-05-04: Homework assigned today:
+
+              - Make the number of balls be an argument to the program.
+
+              - Just do simple bouncing, not fancy bouncing.
+
+              - Make screen Surface size be dynamic, based on real screen size.
+
+              - Allow user to quit by typing 'q'.
+
 * 2020-04-25: Eli completed the 2020-04-22 homework.
               Then we got the ball rotating in place.
 
