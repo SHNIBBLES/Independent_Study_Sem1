@@ -45,7 +45,7 @@ def intro(screen, background, word_color):
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     sys.exit()
-                if (event.key == pygame.K_c):
+                if event.key == pygame.K_c:
                     done = True
         if (pygame.time.get_ticks() - start_ticks) > 3000:
             done = True
@@ -63,6 +63,7 @@ class Ball():
         self.radius = (self.ballrect.width / 2)
         self.screen = screen
         self.ballrect.center = self.start_pos
+        self.ballrect.center = [random.randint(0 + (self.radius + 10), self.screen.get_width() - (self.radius + 10)), random.randint(0 + (self.radius + 10), self.screen.get_height() - (self.radius + 10))]
     def step(self):
         self.rotate()
         self.bounce()
@@ -84,10 +85,10 @@ def main():
     white = 255, 255, 255
     green = 0, 240, 40
     screen = pygame.display.set_mode(size)
-    ball_one = Ball("intro_ball.gif", screen, [60, 60])
-    ball_two = Ball("intro_ball.gif", screen, [500, 200])
-    ball_list = [ball_one, ball_two]
     ball_number = intro(screen, black, white)
+    ball_list = []
+    for ball in range ball_number:
+        ball_list.append(Ball("intro_ball.gif", screen, [0, 0])
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
@@ -95,8 +96,8 @@ def main():
                 if event.key == pygame.K_q:
                     sys.exit()
         screen.fill(black)  
-        ball_one.step()
-        ball_two.step()
+        for ball in ball_list:
+            ball.step()
         pygame.display.flip()
         time.sleep(.01)
 
