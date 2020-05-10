@@ -31,14 +31,12 @@ def intro():
         pygame.display.flip()
         if number is not None:
             break
-    while True:
-        textnum = font.render(str(number), True, white)
-        textnumrect = textnum.get_rect()
-        textnumrect.center = (screen.get_width() // 2, screen.get_height() // 2)
-        screen.blit(textnum, textnumrect)
-        pygame.display.flip()
-        time.sleep(2)
-        break
+    textnum = font.render(str(number), True, white)
+    textnumrect = textnum.get_rect()
+    textnumrect.center = (screen.get_width() // 2, screen.get_height() // 2)
+    screen.blit(textnum, textnumrect)
+    pygame.display.flip()
+    time.sleep(2)
     return number
 
 class Ball():
