@@ -16,7 +16,7 @@ def intro(screen, background, word_color):
     text2 = font.render('ENTER A NUMBER OF BALLS', True, word_color)
     textrect2 = text2.get_rect()  
     textrect2.center = (screen.get_width() // 2, (screen.get_height() // 2) - 50)
-    accepted_numbers = ['1', '2', '3']
+    accepted_numbers = ['1', '2', '3', '4', '5']
     number = None
     while True:
         for event in pygame.event.get():
@@ -52,8 +52,7 @@ def intro(screen, background, word_color):
     return number
 
 class Ball():
-    def __init__(self, image_file, screen, start_pos):
-        self.start_pos = start_pos
+    def __init__(self, image_file, screen):
         self.speed = [4, 4]
         self.rotation = 0
         self.orgigball = pygame.image.load(image_file)
@@ -62,8 +61,7 @@ class Ball():
         self.ballrect = self.ball.get_rect()
         self.radius = (self.ballrect.width / 2)
         self.screen = screen
-        self.ballrect.center = self.start_pos
-        self.ballrect.center = [random.randint(0 + (self.radius + 10), self.screen.get_width() - (self.radius + 10)), random.randint(0 + (self.radius + 10), self.screen.get_height() - (self.radius + 10))]
+        self.ballrect.center = [random.randint(0 + (int(self.radius) + 10), self.screen.get_width() - (int(self.radius) + 10)), random.randint(0 + (int(self.radius) + 10), self.screen.get_height() - (int(self.radius) + 10))]
     def step(self):
         self.rotate()
         self.bounce()
@@ -87,8 +85,8 @@ def main():
     screen = pygame.display.set_mode(size)
     ball_number = intro(screen, black, white)
     ball_list = []
-    for ball in range ball_number:
-        ball_list.append(Ball("intro_ball.gif", screen, [0, 0])
+    for ball in range(ball_number):
+        ball_list.append(Ball("intro_ball.gif", screen))
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
