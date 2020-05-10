@@ -81,14 +81,18 @@ ball_list = [ball_one, ball_two]
 
 ball_number = intro()
 
-while True:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT: sys.exit()
-        if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_q:
-                sys.exit()
-    screen.fill(black)  
-    ball_one.step()
-    ball_two.step()
-    pygame.display.flip()
-    time.sleep(.01)
+def main():
+    while True:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    sys.exit()
+        screen.fill(black)  
+        ball_one.step()
+        ball_two.step()
+        pygame.display.flip()
+        time.sleep(.01)
+
+if __name__ == '__main__':
+    main()
