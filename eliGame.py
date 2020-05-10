@@ -6,13 +6,13 @@ import sys
 import random
 pygame.init()
 
-def intro():
+def intro(screen, background, word_color):
     done = False
     font = pygame.font.Font('slkscreb.ttf', 20) 
-    text1 = font.render('WELCOME TO THE BALL BOUNCER', True, white)
+    text1 = font.render('WELCOME TO THE BALL BOUNCER', True, word_color)
     textrect1 = text1.get_rect()  
     textrect1.center = (screen.get_width() // 2, (screen.get_height() // 2) - 100)
-    text2 = font.render('ENTER A NUMBER OF BALLS', True, white)
+    text2 = font.render('ENTER A NUMBER OF BALLS', True, word_color)
     textrect2 = text2.get_rect()  
     textrect2.center = (screen.get_width() // 2, (screen.get_height() // 2) - 50)
     accepted_numbers = ['1', '2', '3']
@@ -25,13 +25,13 @@ def intro():
                     sys.exit()
                 if event.unicode in accepted_numbers:
                     number = int(event.unicode)
-        screen.fill(black)  
+        screen.fill(background)  
         screen.blit(text1, textrect1)
         screen.blit(text2, textrect2)
         pygame.display.flip()
         if number is not None:
             break
-    textnum = font.render(str(number), True, white)
+    textnum = font.render(str(number), True, word_color)
     textnumrect = textnum.get_rect()
     textnumrect.center = (screen.get_width() // 2, screen.get_height() // 2)
     screen.blit(textnum, textnumrect)
@@ -66,22 +66,16 @@ class Ball():
             self.speed[1] = -self.speed[1]
 
 
-size = width, height = 640, 480
-black = 0, 0, 0
-white = 255, 255, 255
-green = 0, 240, 40
-
-screen = pygame.display.set_mode(size)
-
-
-
-ball_one = Ball("intro_ball.gif", screen, [60, 60])
-ball_two = Ball("intro_ball.gif", screen, [500, 200])
-ball_list = [ball_one, ball_two]
-
-ball_number = intro()
-
 def main():
+    size = width, height = 640, 480
+    black = 0, 0, 0
+    white = 255, 255, 255
+    green = 0, 240, 40
+    screen = pygame.display.set_mode(size)
+    ball_one = Ball("intro_ball.gif", screen, [60, 60])
+    ball_two = Ball("intro_ball.gif", screen, [500, 200])
+    ball_list = [ball_one, ball_two]
+    ball_number = intro(screen, black, white)
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
