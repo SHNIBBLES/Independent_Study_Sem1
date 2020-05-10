@@ -5,12 +5,7 @@ import time
 import sys
 import random
 pygame.init()
-
-def delay(ms):
-    start_ticks = pygame.time.get_ticks()
-    while True:
-        if (pygame.time.get_ticks() - start_ticks) > ms:
-            break
+    
 
 def intro(screen, background, word_color):
     done = False
@@ -42,7 +37,18 @@ def intro(screen, background, word_color):
     textnumrect.center = (screen.get_width() // 2, screen.get_height() // 2)
     screen.blit(textnum, textnumrect)
     pygame.display.update()
-    delay(3000)
+    done = True
+    start_ticks = pygame.time.get_ticks()
+    while done:
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT: sys.exit()
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_q:
+                    sys.exit()
+                if (event.key == pygame.K_c):
+                    done = False
+        if (pygame.time.get_ticks() - start_ticks) > 3000:
+            done = False
     return number
 
 class Ball():
