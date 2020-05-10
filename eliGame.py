@@ -6,6 +6,14 @@ import sys
 import random
 pygame.init()
 
+def delay(ms):
+    start_ticks = pygame.time.get_ticks()
+    while True:
+        delta_time = pygame.time.get_ticks()-start_ticks
+        if delta_time > ms: # if more than 10 seconds close the game
+            break
+    print(delta_time)
+
 def intro(screen, background, word_color):
     done = False
     font = pygame.font.Font('slkscreb.ttf', 20) 
@@ -35,8 +43,8 @@ def intro(screen, background, word_color):
     textnumrect = textnum.get_rect()
     textnumrect.center = (screen.get_width() // 2, screen.get_height() // 2)
     screen.blit(textnum, textnumrect)
-    pygame.display.flip()
-    time.sleep(2)
+    pygame.display.update()
+    delay(3000)
     return number
 
 class Ball():
