@@ -9,10 +9,8 @@ pygame.init()
 def delay(ms):
     start_ticks = pygame.time.get_ticks()
     while True:
-        delta_time = pygame.time.get_ticks()-start_ticks
-        if delta_time > ms: # if more than 10 seconds close the game
+        if (pygame.time.get_ticks() - start_ticks) > ms:
             break
-    print(delta_time)
 
 def intro(screen, background, word_color):
     done = False
