@@ -15,21 +15,31 @@ def intro():
     text2 = font.render('ENTER A NUMBER OF BALLS', True, white)
     textrect2 = text2.get_rect()  
     textrect2.center = (screen.get_width() // 2, (screen.get_height() // 2) - 50)
-    accepted_numbers = [49, 50, 51, 52, 53]
+    accepted_numbers = ['1', '2', '3']
+    number = None
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     sys.exit()
-                if event.key in accepted_numbers:
-                    return event.key
+                if event.unicode in accepted_numbers:
+                    number = int(event.unicode)
         screen.fill(black)  
         screen.blit(text1, textrect1)
         screen.blit(text2, textrect2)
         pygame.display.flip()
-        if done == True:
+        if number is not None:
             break
+    while True:
+        textnum = font.render(str(number), True, white)
+        textnumrect = textnum.get_rect()
+        textnumrect.center = (screen.get_width() // 2, screen.get_height() // 2)
+        screen.blit(textnum, textnumrect)
+        pygame.display.flip()
+        time.sleep(2)
+        break
+    return number
 
 class Ball():
     def __init__(self, image_file, screen, start_pos):
