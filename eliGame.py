@@ -37,18 +37,18 @@ def intro(screen, background, word_color):
     textnumrect.center = (screen.get_width() // 2, screen.get_height() // 2)
     screen.blit(textnum, textnumrect)
     pygame.display.update()
-    done = True
+    done = False
     start_ticks = pygame.time.get_ticks()
-    while done:
+    while not done:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     sys.exit()
                 if (event.key == pygame.K_c):
-                    done = False
+                    done = True
         if (pygame.time.get_ticks() - start_ticks) > 3000:
-            done = False
+            done = True
     return number
 
 class Ball():
