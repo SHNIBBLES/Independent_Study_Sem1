@@ -62,6 +62,7 @@ class Ball():
         self.ballrect = self.ball.get_rect()
         self.radius = (self.ballrect.width / 2)
         self.screen = screen
+        self.bouncy = True
         print(ball_list)
         self.ballrect.center = [random.randint(0 + (int(self.radius) + 10), self.screen.get_width() - (int(self.radius) + 10)), random.randint(0 + (int(self.radius) + 10), self.screen.get_height() - (int(self.radius) + 10))]
     def step(self):
@@ -86,10 +87,13 @@ class Ball():
             for ball2 in ball_list:
                 if ball1 != ball2:
                     distance = math.hypot(ball1.ballrect.centerx - ball2.ballrect.centerx, ball1.ballrect.centery - ball2.ballrect.centery)
-                    if distance <= (ball1.radius + ball2.radius):
+                    if (distance <= (ball1.radius + ball2.radius)) and (self.bouncy == True):
+                        self.bouncy = False
                         print("contact (%s -> %s)" % (id(ball1), id(ball2)))
                         ball1.reverse()
                         ball2.reverse()
+                    else:
+                        self.bouncy = True
                 
 ball_list = []
 
@@ -111,8 +115,8 @@ def main():
         screen.fill(black)  
         for ball in ball_list:
             ball.step()
-        pygame.display.flip()
         print("yay")
+        pygame.display.flip()
         time.sleep(.01)
 
 if __name__ == '__main__':
