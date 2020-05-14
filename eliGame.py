@@ -66,7 +66,7 @@ class Ball():
         self.ballrect.center = [random.randint(0 + (int(self.radius) + 10), self.screen.get_width() - (int(self.radius) + 10)), random.randint(0 + (int(self.radius) + 10), self.screen.get_height() - (int(self.radius) + 10))]
     def step(self):
         self.rotate()
-        self.bouce()
+        self.bounce()
         self.wallbounce()
         self.screen.blit(self.ball, (self.ballrect.centerx - int(self.ball.get_width() / 2), self.ballrect.centery - int(self.ball.get_height() / 2)))
     def rotate(self):
@@ -81,13 +81,13 @@ class Ball():
     def reverse(self):
         self.speed[0] = -self.speed[0]
         self.speed[1] = -self.speed[1]
-    def bouce(self):
+    def bounce(self):
         for ball1 in ball_list:
             for ball2 in ball_list:
                 if ball1 != ball2:
                     distance = math.hypot(ball1.ballrect.centerx - ball2.ballrect.centerx, ball1.ballrect.centery - ball2.ballrect.centery)
                     if distance <= (ball1.radius + ball2.radius):
-                        print("contact")
+                        print("contact (%s -> %s)" % (id(ball1), id(ball2)))
                         ball1.reverse()
                         ball2.reverse()
                 
