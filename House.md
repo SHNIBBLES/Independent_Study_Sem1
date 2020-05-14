@@ -1,3 +1,15 @@
+* 2020-05-14: Homework assigned today:
+
+  - Spawning code should be aware of where other balls are being
+    spawned and avoid collisions.
+
+  - Fix the bounce bug that shows up frequently with 5 balls
+    (and also shows up with lower numbers of balls, though
+    less frequently).
+
+  - Karl to explain to Eli commands need "./" on the front
+    (next time, because)
+
 * 2020-05-10: Homework assigned today:
 
   - Make the balls bounce off each other.
