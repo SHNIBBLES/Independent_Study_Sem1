@@ -111,8 +111,8 @@ def main():
         screen.fill(black)  
         for ball in ball_list:
             ball.step()
-            print("yay")
         pygame.display.flip()
+        print("yay")
         time.sleep(.01)
 
 if __name__ == '__main__':
