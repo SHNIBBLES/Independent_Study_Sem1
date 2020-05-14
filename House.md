@@ -1,3 +1,11 @@
+* 2020-05-10: Homework assigned today:
+
+  - Make the balls bounce off each other.
+
+  - Maybe do fancy wall-bounce behavior too, if time.
+
+  - Maybe read a number higher than 9, if time.
+
 * 2020-05-04: Homework assigned today:
 
               - Make the number of balls be an argument to the program.
