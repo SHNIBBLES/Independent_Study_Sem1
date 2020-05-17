@@ -54,6 +54,10 @@ def intro(screen, background, word_color):
 
 class Ball():
     def __init__(self, image_file, screen, name, ball_list):
+        """This is a documentation string.  In it, you should
+        name every parameter (argument) that your class takes
+        when creating an instance, say what type that parameter is,
+        and what it's used for."""
         self.name = name
         self.ball_list = ball_list
         self.speed = [4, 4]
@@ -67,7 +71,7 @@ class Ball():
         self.bouncy = True
         self.ballrect.center = [random.randint(0 + (int(self.radius) + 10), self.screen.get_width() - (int(self.radius) + 10)), random.randint(0 + (int(self.radius) + 10), self.screen.get_height() - (int(self.radius) + 10))]
     def __str__(self):
-        return str(self.name)
+        return self.name
     def step(self):
         self.rotate()
         self.bounce()
@@ -110,7 +114,7 @@ def main():
     screen = pygame.display.set_mode(size)
     number_of_balls = intro(screen, black, white)
     for ball_number in range(number_of_balls):
-        ball_list.append(Ball("intro_ball.gif", screen, ball_number, ball_list))
+        ball_list.append(Ball("intro_ball.gif", screen, f"{ball_number}", ball_list))
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
