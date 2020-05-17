@@ -108,9 +108,9 @@ def main():
     white = 255, 255, 255
     green = 0, 240, 40
     screen = pygame.display.set_mode(size)
-    ball_number = intro(screen, black, white)
-    for ball in range(ball_number):
-        ball_list.append(Ball("intro_ball.gif", screen, ball, ball_list))
+    number_of_balls = intro(screen, black, white)
+    for ball_number in range(number_of_balls):
+        ball_list.append(Ball("intro_ball.gif", screen, ball_number, ball_list))
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
