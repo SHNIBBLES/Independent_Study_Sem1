@@ -53,7 +53,9 @@ def intro(screen, background, word_color):
     return number
 
 class Ball():
-    def __init__(self, image_file, screen):
+    def __init__(self, image_file, screen, name, ball_list):
+        self.name = name
+        self.ball_list = ball_list
         self.speed = [4, 4]
         self.rotation = 0
         self.orgigball = pygame.image.load(image_file)
@@ -63,8 +65,9 @@ class Ball():
         self.radius = (self.ballrect.width / 2)
         self.screen = screen
         self.bouncy = True
-        print(ball_list)
         self.ballrect.center = [random.randint(0 + (int(self.radius) + 10), self.screen.get_width() - (int(self.radius) + 10)), random.randint(0 + (int(self.radius) + 10), self.screen.get_height() - (int(self.radius) + 10))]
+    def __str__(self):
+        return str(self.name)
     def step(self):
         self.rotate()
         self.bounce()
@@ -83,29 +86,31 @@ class Ball():
         self.speed[0] = -self.speed[0]
         self.speed[1] = -self.speed[1]
     def bounce(self):
-        for ball1 in ball_list:
-            for ball2 in ball_list:
+        for ball1 in self.ball_list:
+            for ball2 in self.ball_list:
+                print(str(ball1) + " " + str(ball2))
                 if ball1 != ball2:
                     distance = math.hypot(ball1.ballrect.centerx - ball2.ballrect.centerx, ball1.ballrect.centery - ball2.ballrect.centery)
-                    if (distance <= (ball1.radius + ball2.radius)) and (self.bouncy == True):
+                    if (distance <= (ball1.radius + ball2.radius + 4)) and (self.bouncy == True):
                         self.bouncy = False
-                        print("contact (%s -> %s)" % (id(ball1), id(ball2)))
+                        print(f"contact ({ball1} -> {ball2})")
                         ball1.reverse()
                         ball2.reverse()
                     else:
                         self.bouncy = True
                 
-ball_list = []
+
 
 def main():
     size = width, height = 640, 480
+    ball_list = []
     black = 0, 0, 0
     white = 255, 255, 255
     green = 0, 240, 40
     screen = pygame.display.set_mode(size)
     ball_number = intro(screen, black, white)
     for ball in range(ball_number):
-        ball_list.append(Ball("intro_ball.gif", screen))
+        ball_list.append(Ball("intro_ball.gif", screen, ball, ball_list))
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
@@ -115,7 +120,6 @@ def main():
         screen.fill(black)  
         for ball in ball_list:
             ball.step()
-        print("yay")
         pygame.display.flip()
         time.sleep(.01)
 
