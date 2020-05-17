@@ -67,7 +67,6 @@ class Ball():
         self.ball = self.orgigball
         self.ballrect = self.ball.get_rect()
         self.radius = (self.ballrect.width / 2)
-        print(self.radius)
         self.screen = screen
         self.bouncy = True
         self.ballrect.center = [random.randint(0 + (int(self.radius) + 10), self.screen.get_width() - (int(self.radius) + 10)), random.randint(0 + (int(self.radius) + 10), self.screen.get_height() - (int(self.radius) + 10))]
@@ -76,13 +75,15 @@ class Ball():
     def step(self):
         self.rotate()
         self.bounce()
+        self.move()
         self.wallbounce()
         self.screen.blit(self.ball, (self.ballrect.centerx - int(self.ball.get_width() / 2), self.ballrect.centery - int(self.ball.get_height() / 2)))
+    def move(self):
+        self.ballrect = self.ballrect.move(self.speed)
     def rotate(self):
         self.rotation = (self.rotation + 6) % 360
         self.ball = pygame.transform.rotate(self.orgigball, -self.rotation)
     def wallbounce(self):
-        self.ballrect = self.ballrect.move(self.speed)
         if (self.ballrect.centerx <= 0 + self.radius) or (self.ballrect.centerx >= self.screen.get_width() - self.radius):
             self.speed[0] = -self.speed[0]
         if (self.ballrect.centery <= 0 + self.radius) or (self.ballrect.centery >= self.screen.get_height() - self.radius):
@@ -101,6 +102,8 @@ class Ball():
                         print(f"contact ({ball1} -> {ball2}) dis= {distance:.0f}")
                         ball1.reverse()
                         ball2.reverse()
+                        ball1.ballrect = ball1.ballrect.move(ball1.speed)
+                        ball2.ballrect = ball2.ballrect.move(ball2.speed) 
                     else:
                         self.bouncy = True
                 
