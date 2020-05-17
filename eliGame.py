@@ -92,8 +92,8 @@ class Ball():
     def bounce(self):
         for ball1 in self.ball_list:
             for ball2 in self.ball_list:
-                print(str(ball1) + " " + str(ball2))
                 if ball1 != ball2:
+                    print(str(ball1) + " " + str(ball2))
                     distance = math.hypot(ball1.ballrect.centerx - ball2.ballrect.centerx, ball1.ballrect.centery - ball2.ballrect.centery)
                     if (distance <= (ball1.radius + ball2.radius + 4)) and (self.bouncy == True):
                         self.bouncy = False
