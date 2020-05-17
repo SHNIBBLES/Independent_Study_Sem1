@@ -95,7 +95,7 @@ class Ball():
             for ball2 in self.ball_list:
                 if ball1 != ball2:
                     distance = math.hypot(ball1.ballrect.centerx - ball2.ballrect.centerx, ball1.ballrect.centery - ball2.ballrect.centery)
-                    print(f"{ball2}  {ball2}  Distance = {distance:.0f}")
+                    print(f"{ball1}  {ball2}  Distance = {distance:.0f}")
                     if (distance <= (ball1.radius + ball2.radius)) and (self.bouncy == True):
                         self.bouncy = False
                         print(f"contact ({ball1} -> {ball2}) dis= {distance:.0f}")
