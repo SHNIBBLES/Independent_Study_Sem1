@@ -67,6 +67,7 @@ class Ball():
         self.ball = self.orgigball
         self.ballrect = self.ball.get_rect()
         self.radius = (self.ballrect.width / 2)
+        print(self.radius)
         self.screen = screen
         self.bouncy = True
         self.ballrect.center = [random.randint(0 + (int(self.radius) + 10), self.screen.get_width() - (int(self.radius) + 10)), random.randint(0 + (int(self.radius) + 10), self.screen.get_height() - (int(self.radius) + 10))]
