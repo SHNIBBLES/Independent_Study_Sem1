@@ -1,3 +1,14 @@
+* 2020-05-17: Homework assigned today:
+
+  - Write doc strings for all functions and methods.
+
+  - Separate moving from bouncing -- that is, separate moving from
+    *both* wall-bouncing and from ball-bouncing.
+
+  - Finish debugging & fixing the ball-overlap bug.
+
+  - BONUS: Make it more efficient -- don't check every pair of balls twice
+
 * 2020-05-14: Homework assigned today:
 
   - Spawning code should be aware of where other balls are being
