@@ -6,7 +6,7 @@ import sys
 import random
 import math
 pygame.init()
-    
+
 
 def intro(screen, background, word_color):
     done = False
