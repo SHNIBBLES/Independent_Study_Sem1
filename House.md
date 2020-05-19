@@ -1,13 +1,17 @@
-* 2020-05-17: Homework assigned today:
+* 2020-05-19: Homework assigned today:
+
+  - Please always always always always push after committing.  
+    Don't wait until just before we get into Jitsi.  The sooner I can
+    see the code, the better prepared I can be.
+
+  - Conditionalize the debugging statements so that the user can press
+    a key to turn them on or off.
+
+  - Solve the ball-buried-in-the-wall problem.
+
+Plus some leftover stuff from the homework assigned on 2020-05-17:
 
   - Write doc strings for all functions and methods.
-
-  - Separate moving from bouncing -- that is, separate moving from
-    *both* wall-bouncing and from ball-bouncing.
-
-  - Finish debugging & fixing the ball-overlap bug.
-
-  - BONUS: Make it more efficient -- don't check every pair of balls twice
 
 * 2020-05-14: Homework assigned today:
 
