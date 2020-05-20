@@ -1,12 +1,17 @@
-* 2020-05-19: Homework assigned today:
-
-  - Resolve the conflicts in House.md :-).
+* 2020-05-19: Homework assigned today: (+ Homework Assigned again from 5/17)
 
   - Please always always always always push after committing.  
-    Don't wait until just before we get into Jitsi.  The sooner 
-    I can see your code, the better prepared I can be.
+    Don't wait until just before we get into Jitsi.  The sooner I can
+    see the code, the better prepared I can be.
+
+  - Conditionalize the debugging statements so that the user can press
+    a key to turn them on or off.
 
   - Write doc strings for all functions and methods.
+
+  - Fix the Randomization of balls at beginning
+
+  - (optional) - not too important: Make it more efficient -- don't check every pair of balls twice
 
   - Add some unconditional debugging statements that print out at
     startup time and show the initial starting position and speed of
