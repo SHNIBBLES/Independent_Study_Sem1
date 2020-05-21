@@ -9,6 +9,8 @@ pygame.init()
 
 
 def intro(screen, background, word_color):
+    """Generates Intro Screen, takes user input, and
+    returns desired number of balls"""
     done = False
     font = pygame.font.Font('slkscreb.ttf', 20) 
     text1 = font.render('WELCOME TO THE BALL BOUNCER', True, word_color)
@@ -54,10 +56,13 @@ def intro(screen, background, word_color):
 
 class Ball():
     def __init__(self, image_file, screen, name, ball_list, start_pos):
-        """This is a documentation string.  In it, you should
-        name every parameter (argument) that your class takes
-        when creating an instance, say what type that parameter is,
-        and what it's used for."""
+        """
+        image_file - a string - tells class which image file to load
+        screen - a pygame object with height and width - allows class to know height and width of game window
+        name - an int - tells class the simple id of a ball in the ball_list
+        ball_list - a list - used for cycling through all the ball instances
+        start_pos - a list - cordinnates for spawning ball upon generation
+        """
         self.name = name
         self.ball_list = ball_list
         self.speed = [4, 4]
@@ -71,27 +76,48 @@ class Ball():
         self.bouncy = True
         self.ballrect.center = start_pos
     def __str__(self):
+        """
+        For name purposes
+        """
         return self.name
     def step(self):
+        """
+        Executive for all ball movement
+        """
         self.rotate()
         self.wallbounce()
         self.bounce()
         self.move()
         self.screen.blit(self.ball, (self.ballrect.centerx - int(self.ball.get_width() / 2), self.ballrect.centery - int(self.ball.get_height() / 2)))
     def move(self):
+        """
+        Ball  movement in a direction
+        """
         self.ballrect = self.ballrect.move(self.speed)
     def rotate(self):
+        """
+        Rotate the ball
+        """
         self.rotation = (self.rotation + 6) % 360
         self.ball = pygame.transform.rotate(self.orgigball, -self.rotation)
     def wallbounce(self):
+        """
+        Responsible for ball bouncing on walls
+        """
         if (self.ballrect.centerx <= 0 + self.radius) or (self.ballrect.centerx >= self.screen.get_width() - self.radius):
             self.speed[0] = -self.speed[0]
         if (self.ballrect.centery <= 0 + self.radius) or (self.ballrect.centery >= self.screen.get_height() - self.radius):
             self.speed[1] = -self.speed[1]
     def reverse(self):
+        """
+        When the balls need to be reversed
+        """
         self.speed[0] = -self.speed[0]
         self.speed[1] = -self.speed[1]
     def bounce(self):
+        """
+        When two balls hit eachother
+        """
         for ball1 in self.ball_list:
             for ball2 in self.ball_list:
                 if ball1 != ball2:
@@ -112,6 +138,9 @@ class Ball():
 show_debug = False
 
 def main():
+    """
+    Game setup and main loop
+    """
     size = width, height = 640, 480
     ball_list = []
     black = 0, 0, 0
