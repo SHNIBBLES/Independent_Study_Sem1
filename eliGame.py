@@ -53,7 +53,7 @@ def intro(screen, background, word_color):
     return number
 
 class Ball():
-    def __init__(self, image_file, screen, name, ball_list):
+    def __init__(self, image_file, screen, name, ball_list, start_pos):
         """This is a documentation string.  In it, you should
         name every parameter (argument) that your class takes
         when creating an instance, say what type that parameter is,
@@ -69,14 +69,14 @@ class Ball():
         self.radius = (self.ballrect.width / 2)
         self.screen = screen
         self.bouncy = True
-        self.ballrect.center = [random.randint(0 + (int(self.radius) + 10), self.screen.get_width() - (int(self.radius) + 10)), random.randint(0 + (int(self.radius) + 10), self.screen.get_height() - (int(self.radius) + 10))]
+        self.ballrect.center = start_pos
     def __str__(self):
         return self.name
     def step(self):
         self.rotate()
+        self.wallbounce()
         self.bounce()
         self.move()
-        self.wallbounce()
         self.screen.blit(self.ball, (self.ballrect.centerx - int(self.ball.get_width() / 2), self.ballrect.centery - int(self.ball.get_height() / 2)))
     def move(self):
         self.ballrect = self.ballrect.move(self.speed)
@@ -96,18 +96,20 @@ class Ball():
             for ball2 in self.ball_list:
                 if ball1 != ball2:
                     distance = math.hypot(ball1.ballrect.centerx - ball2.ballrect.centerx, ball1.ballrect.centery - ball2.ballrect.centery)
-                    print(f"{ball1}  {ball2}  Distance = {distance:.0f}")
+                    if show_debug == True:
+                        print(f"{ball1}  {ball2}  Distance = {distance:.0f}")
                     if (distance <= (ball1.radius + ball2.radius)) and (self.bouncy == True):
                         self.bouncy = False
-                        print(f"contact ({ball1} -> {ball2}) dis= {distance:.0f}")
+                        if show_debug == True:
+                            print(f"contact ({ball1} -> {ball2}) dis= {distance:.0f}")
                         ball1.reverse()
                         ball2.reverse()
                         ball1.ballrect = ball1.ballrect.move(ball1.speed)
-                        ball2.ballrect = ball2.ballrect.move(ball2.speed) 
+                        ball2.ballrect = ball2.ballrect.move(ball2.speed)
                     else:
                         self.bouncy = True
                 
-
+show_debug = False
 
 def main():
     size = width, height = 640, 480
@@ -117,14 +119,31 @@ def main():
     green = 0, 240, 40
     screen = pygame.display.set_mode(size)
     number_of_balls = intro(screen, black, white)
+    start_pos_list = []
+    max_radius = int((pygame.image.load("intro_ball.gif").get_rect().width) / 2)
+    print(f"Max-Radius = {max_radius}")
+    while len(start_pos_list) < number_of_balls:
+        print("Randomizing...")
+        start_pos = [random.randint(0 + max_radius + 5, screen.get_width() - max_radius + 5), random.randint(0 + max_radius + 5, screen.get_height() - max_radius + 5)]
+        start_pos_list.append(start_pos)
+        if len(start_pos_list) >= 2:
+            for pos_number in range(len(start_pos_list) - 1):
+                if (math.hypot(start_pos_list[-1][0] - start_pos_list[(-pos_number - 2)][0], start_pos_list[-1][1] - start_pos_list[(-pos_number - 2)][1])) <= ((max_radius * 2) + 10):
+                    del start_pos_list[-1]
+                    break
+    print(f"Done! - Pos_List = {start_pos_list}")
     for ball_number in range(number_of_balls):
-        ball_list.append(Ball("intro_ball.gif", screen, f"{ball_number}", ball_list))
+        ball_list.append(Ball("intro_ball.gif", screen, f"{ball_number}", ball_list, start_pos_list[ball_number]))
+                
+                
     while True:
         for event in pygame.event.get():
             if event.type == pygame.QUIT: sys.exit()
             if event.type == pygame.KEYDOWN:
                 if event.key == pygame.K_q:
                     sys.exit()
+                elif event.key == pygame.K_d:
+                    show_debug = True
         screen.fill(black)  
         for ball in ball_list:
             ball.step()
